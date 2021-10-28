@@ -1,0 +1,43 @@
+<h1>User Panel</h1>
+<button class="btn btn-primary" (click)="addRandomUser()">Add Random User</button>
+<input class="form-control" type="text" [(ngModel)] = "userName" placeholder="User Name">
+<input class="form-control" type="number" [(ngModel)] = "userAge" placeholder="User Age">
+<input class="form-control" type="text" [(ngModel)] = "userEmail" placeholder="User Email">
+
+<select [(ngModel)] = "userGender">
+    <option *ngFor="let gender of genders" ngDefaultControl>
+        {{gender}}
+    </option> 
+</select>
+
+<br/> 
+
+<button class="btn btn-primary" (click)="addUser()">Add User</button>
+
+<br/> 
+
+<ul>
+    <div *ngFor="let user of users; let i = index">
+        <span *ngIf="user.age > 0; else errorMessage">
+            <li [ngStyle] = "{'background-color': bgColor}">      
+       
+            {{ i + 1 }} {{user.name}} {{user.age}} {{ user.gender }}
+        
+            </li>
+        </span>
+    </div>
+</ul>  
+<ng-template #errorMessage> 
+    <h2> User age cannot be less than zero! </h2> 
+</ng-template>
+<!-- 
+<tbody>
+    <tr *ngFor="let user of usersList; let ind = index " [ngClass]="{underage: 18>user.age, adult: user.age>=18 && 65>user.age, senior: user.age>=65}">
+      <td>{{user.name}}</td>
+      <td>{{user.age}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.gender}}</td>
+    </tr>
+</tbody> -->
+
+
